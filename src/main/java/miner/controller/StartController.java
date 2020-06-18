@@ -20,7 +20,6 @@ public class StartController {
             }
         });
     }
-
     public void startGame(JButton startGame, final JTextField side, final JTextField amountMines) {
         startGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

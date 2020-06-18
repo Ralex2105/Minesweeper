@@ -3,8 +3,11 @@ package miner.model;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.plaf.metal.MetalButtonUI;
 
 import miner.view.CellView;
+
+import java.awt.*;
 
 public class CellModel {
 
@@ -17,22 +20,19 @@ public class CellModel {
     public CellModel(BoardModel board) {
         new CellView(this, board);
     }
-
-    public boolean isEmpty(){
+    boolean isEmpty(){
         return isNotChecked() && getValue() == 0;
     }
-
     public JButton getButton() {
         return button;
     }
     public void setButton(JButton button) {
         this.button = button;
     }
-
-    public int getValue() {
+    int getValue() {
         return value;
     }
-    public void setValue(int value) {
+    void setValue(int value) {
         this.value = value;
     }
     public int getIndex() {
@@ -41,17 +41,59 @@ public class CellModel {
     public void setIndex(int index) {
         this.index = index;
     }
-    public boolean isNotChecked() {
+    boolean isNotChecked() {
         return notChecked;
     }
     public void setNotChecked(boolean notChecked) {
         this.notChecked = notChecked;
     }
-
     public ImageIcon getFlag() {
         return flag;
     }
+    public static void displayValue(CellModel cell){
+        if (cell.getValue()== -1) {
+            cell.getButton().setText("\u2731");
+            cell.getButton().setBackground(Color.RED);
+        } else if (cell.getValue() != 0) {
+            String variable = String.valueOf(cell.getValue());
+            BoardModel.plus();
+            cell.getButton().setText(variable);
 
+            switch (cell.getValue()) {
+                case (1): cell.getButton().setUI(new MetalButtonUI() {
+                    protected Color getDisabledTextColor() {
+                        return Color.cyan;
+                    }
+                });
+                    break;
+                case (2): cell.getButton().setUI(new MetalButtonUI() {
+                    protected Color getDisabledTextColor() {
+                        return Color.GREEN;
+                    }
+                });
+                    break;
+                case (3): cell.getButton().setUI(new MetalButtonUI() {
+                    protected Color getDisabledTextColor() {
+                        return Color.RED;
+                    }
+                });
+                    break;
+                case (4): cell.getButton().setUI(new MetalButtonUI() {
+                    protected Color getDisabledTextColor() {
+                        return Color.BLUE;
+                    }
+                });
+                    break;
+                default: cell.getButton().setUI(new MetalButtonUI() {
+                    protected Color getDisabledTextColor() {
+                        return Color.BLACK;
+                    }
+                });
+                    break;
+            }
+        }
+        else BoardModel.plus();
+    }
 }
 
 
