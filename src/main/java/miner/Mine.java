@@ -1,7 +1,7 @@
 package miner;
 
 
-import miner.start.StartView;
+import miner.view.StartView;
 
 class Main {
     public static void main(String[] args){

@@ -1,4 +1,4 @@
-package miner.cell;
+package miner.controller;
 
 
 import java.awt.Color;
@@ -11,14 +11,15 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.plaf.metal.MetalButtonUI;
 
-import miner.board.BoardModel;
+import miner.model.CellModel;
+import miner.model.BoardModel;
 
 public class CellController implements MouseListener{
 
-    private	CellModel cell;
+    private CellModel cell;
     private	BoardModel board;
 
-    CellController(CellModel cell, BoardModel board) {
+    public CellController(CellModel cell, BoardModel board) {
         this.cell = cell;
         this.board = board;
     }
@@ -49,21 +50,21 @@ public class CellController implements MouseListener{
             for (int j = 0; j < board.getSide(); j++) {
                 if (board.getCells()[i][j].getValue() != -1) {
                     if (j >= 1 && board.getCells()[i][j - 1].getValue() == -1)
-                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue()+1);
+                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue() + 1);
                     if (j <= board.getLimit()&& board.getCells()[i][j + 1].getValue() == -1)
-                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue()+1);
+                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue() + 1);
                     if (i >= 1 && board.getCells()[i - 1][j].getValue() == -1)
-                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue()+1);
+                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue() + 1);
                     if (i <= board.getLimit() && board.getCells()[i + 1][j].getValue() == -1)
-                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue()+1);
-                    if (i >= 1 && j >= 1 && board.getCells()[i - 1][j - 1].getValue() == -1)
-                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue()+1);
+                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue() + 1);
+                    if (i >= 1 && j >= 1 && board.getCells()[i - 1][j - 1].getValue() == - 1)
+                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue() + 1);
                     if (i <= board.getLimit() && j <= board.getLimit() && board.getCells()[i + 1][j + 1].getValue() == -1)
-                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue()+1);
+                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue() + 1);
                     if (i >= 1 && j <= board.getLimit() && board.getCells()[i - 1][j + 1].getValue() == -1)
-                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue()+1);
+                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue() + 1);
                     if (i <= board.getLimit() && j >= 1 && board.getCells()[i + 1][j - 1].getValue() == -1)
-                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue()+1);
+                        board.getCells()[i][j].setValue(board.getCells()[i][j].getValue() + 1);
                 }
             }
         }
@@ -111,43 +112,45 @@ public class CellController implements MouseListener{
             cell.getButton().setBackground(Color.RED);
         } else if (cell.getValue() != 0) {
             String variable = String.valueOf(cell.getValue());
-            board.setCountOfRevealed(board.getCountOfRevealed()+1);
+            board.setCountOfRevealed(board.getCountOfRevealed() + 1);
 
             cell.getButton().setText(variable);
 
 
-            if (cell.getValue() == 1) cell.getButton().setUI(new MetalButtonUI() {
-                protected Color getDisabledTextColor() {
-                    return Color.cyan;
-                }
-            });
-
-            if (cell.getValue() == 2) cell.getButton().setUI(new MetalButtonUI() {
-                protected Color getDisabledTextColor() {
-                    return Color.GREEN;
-                }
-            });
-
-            if (cell.getValue() == 3) cell.getButton().setUI(new MetalButtonUI() {
-
-                protected Color getDisabledTextColor() {
-                    return Color.RED;
-                }
-            });
-
-            if (cell.getValue() == 4) cell.getButton().setUI(new MetalButtonUI() {
-                protected Color getDisabledTextColor() {
-                    return Color.BLUE;
-                }
-            });
-
-            if (cell.getValue() >= 5) cell.getButton().setUI(new MetalButtonUI() {
-                protected Color getDisabledTextColor() {
-                    return Color.BLACK;
-                }
-            });
+            switch (cell.getValue()) {
+                case (1): cell.getButton().setUI(new MetalButtonUI() {
+                    protected Color getDisabledTextColor() {
+                        return Color.cyan;
+                    }
+                });
+                    break;
+                case (2): cell.getButton().setUI(new MetalButtonUI() {
+                    protected Color getDisabledTextColor() {
+                        return Color.GREEN;
+                    }
+                });
+                    break;
+                case (3): cell.getButton().setUI(new MetalButtonUI() {
+                    protected Color getDisabledTextColor() {
+                        return Color.RED;
+                    }
+                });
+                    break;
+                case (4): cell.getButton().setUI(new MetalButtonUI() {
+                    protected Color getDisabledTextColor() {
+                        return Color.BLUE;
+                    }
+                });
+                    break;
+                default: cell.getButton().setUI(new MetalButtonUI() {
+                    protected Color getDisabledTextColor() {
+                        return Color.BLACK;
+                    }
+                });
+                    break;
+            }
         }
-        else board.setCountOfRevealed(board.getCountOfRevealed()+1);
+        else board.setCountOfRevealed(board.getCountOfRevealed() + 1);
     }
 
     private CellModel getCell(int index) {
@@ -161,10 +164,12 @@ public class CellController implements MouseListener{
 
     private void win() {
         if (board.getCountOfRevealed() >= board.getCountOfNeedRevealed())
-            gameWin();
+            gameWinOrLose(1);
     }
 
-    private void reveal(CellModel cell){
+
+
+     private void reveal(CellModel cell){
         displayValue(cell);
         cell.getButton().setEnabled(false);
     }
@@ -175,32 +180,13 @@ public class CellController implements MouseListener{
                 reveal(y);
             }
         }
-        gameLost();
+        gameWinOrLose(0);
     }
 
-    private void gameLost() {
-        String dialogMessage = "You are a loser";
-        Object[] options = {"Yes", "Exit"};
-        JFrame frame = board.getFrame();
-        int n = JOptionPane.showOptionDialog( frame,
-                dialogMessage + "\nDo you want to restart the game?",
-                "",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                options,
-                options[0]);
-        if (n == JOptionPane.YES_OPTION) {
-            frame.dispose();
-        } else if (n == JOptionPane.NO_OPTION) {
-            System.exit(0);
-        } else {
-            System.exit(0);
-        }
-    }
 
-    private void gameWin() {
+    private void gameWinOrLose(int game) {
         String dialogMessage = "You win";
+        if (game == 0) dialogMessage = "You lose";
         Object[] options = {"Yes", "Exit"};
         JFrame frame = board.getFrame();
         int n = JOptionPane.showOptionDialog(frame,

@@ -1,13 +1,12 @@
-package miner.board;
+package miner.view;
 
 
 import java.awt.GridLayout;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
-import miner.cell.CellModel;
+import miner.model.CellModel;
+import miner.model.BoardModel;
 
 public class BoardView {
     private BoardModel board;

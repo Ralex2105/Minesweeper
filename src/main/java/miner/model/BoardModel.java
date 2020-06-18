@@ -1,9 +1,10 @@
-package miner.board;
+package miner.model;
 
+
+import miner.controller.CellController;
+import miner.view.BoardView;
 
 import javax.swing.JFrame;
-
-import miner.cell.CellModel;
 
 public class BoardModel {
 
@@ -37,16 +38,16 @@ public class BoardModel {
     public void setLimit(int limit) {
         this.limit = limit;
     }
-    int getCellIndex() {
+    public int getCellIndex() {
         return cellIndex;
     }
-    void setCellIndex(int cellIndex) {
+    public void setCellIndex(int cellIndex) {
         this.cellIndex = cellIndex;
     }
-    int getSideLength() {
+    public int getSideLength() {
         return sideLength;
     }
-    void setSideLength(int sideLength) {
+    public void setSideLength(int sideLength) {
         this.sideLength = sideLength;
     }
     public int getCountOfRevealed() {
@@ -64,7 +65,7 @@ public class BoardModel {
     public CellModel[][] getCells() {
         return cells;
     }
-    void setCells(CellModel[][] cellModels) {
+    public void setCells(CellModel[][] cellModels) {
         this.cells = cellModels;
     }
     public boolean isBeginGame() {
@@ -76,7 +77,7 @@ public class BoardModel {
     public JFrame getFrame() {
         return frame;
     }
-    void setFrame(JFrame frame) {
+    public void setFrame(JFrame frame) {
         this.frame = frame;
     }
 }

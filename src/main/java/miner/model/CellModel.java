@@ -1,10 +1,10 @@
-package miner.cell;
+package miner.model;
 
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import miner.board.BoardModel;
+import miner.view.CellView;
 
 public class CellModel {
 
@@ -18,37 +18,37 @@ public class CellModel {
         new CellView(this, board);
     }
 
-    boolean isEmpty(){
+    public boolean isEmpty(){
         return isNotChecked() && getValue() == 0;
     }
 
     public JButton getButton() {
         return button;
     }
-    void setButton(JButton button) {
+    public void setButton(JButton button) {
         this.button = button;
     }
 
-    int getValue() {
+    public int getValue() {
         return value;
     }
-    void setValue(int value) {
+    public void setValue(int value) {
         this.value = value;
     }
-    int getIndex() {
+    public int getIndex() {
         return index;
     }
     public void setIndex(int index) {
         this.index = index;
     }
-    boolean isNotChecked() {
+    public boolean isNotChecked() {
         return notChecked;
     }
-    void setNotChecked(boolean notChecked) {
+    public void setNotChecked(boolean notChecked) {
         this.notChecked = notChecked;
     }
 
-    ImageIcon getFlag() {
+    public ImageIcon getFlag() {
         return flag;
     }
 

@@ -1,4 +1,4 @@
-package miner.start;
+package miner.controller;
 
 
 import java.awt.event.ActionEvent;
@@ -8,12 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import miner.board.BoardModel;
-import miner.board.BoardView;
+import miner.model.BoardModel;
+import miner.view.BoardView;
 
-class StartController {
+public class StartController {
 
-    void endGame(JButton endGame) {
+    public void endGame(JButton endGame) {
         endGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
@@ -21,7 +21,7 @@ class StartController {
         });
     }
 
-    void startGame(JButton startGame, final JTextField side, final JTextField amountMines) {
+    public void startGame(JButton startGame, final JTextField side, final JTextField amountMines) {
         startGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
