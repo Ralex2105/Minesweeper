@@ -20,6 +20,8 @@ public class CellModel {
     public CellModel(BoardModel board) {
         new CellView(this, board);
     }
+
+
     boolean isEmpty(){
         return isNotChecked() && getValue() == 0;
     }
@@ -29,10 +31,10 @@ public class CellModel {
     public void setButton(JButton button) {
         this.button = button;
     }
-    int getValue() {
+    public int getValue() {
         return value;
     }
-    void setValue(int value) {
+    public void setValue(int value) {
         this.value = value;
     }
     public int getIndex() {

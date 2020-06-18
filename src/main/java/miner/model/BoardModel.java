@@ -144,7 +144,6 @@ public class BoardModel {
     }
     private static ArrayList<Integer> generateMinesLocation(int mine, int firstPress) {
         ArrayList<Integer> location = new ArrayList<Integer>();
-
         for (int i = 0; i < mine; ) {
             int random = (int) (Math.random() * side * side);
             if(random!= firstPress)
