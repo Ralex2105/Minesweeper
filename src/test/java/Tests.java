@@ -27,7 +27,7 @@ class Tests {
 
     @Test
     void isNotCheckedOrChecked() {
-        BoardModel board = new BoardModel();
+        BoardModel board = new BoardModel(); 
         CellModel cells = new CellModel(board);
         board.setSide(5);
         board.setMines(1);
