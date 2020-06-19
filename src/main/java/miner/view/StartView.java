@@ -13,7 +13,7 @@ import javax.swing.WindowConstants;
 
 public class StartView {
 
-    public StartView(){
+    public StartView() {
         JTextField	side = new JTextField(3);
         side.setToolTipText("Side");
         JTextField  amountMines = new JTextField(3);

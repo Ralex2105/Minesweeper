@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class CellModel {
 
-    private JButton button;
+    public static JButton button;
     private int value;
     private int index;
     private boolean notChecked;
@@ -29,7 +29,7 @@ public class CellModel {
         return button;
     }
     public void setButton(JButton button) {
-        this.button = button;
+        CellModel.button = button;
     }
     public int getValue() {
         return value;
@@ -43,7 +43,7 @@ public class CellModel {
     public void setIndex(int index) {
         this.index = index;
     }
-    boolean isNotChecked() {
+    public boolean isNotChecked() {
         return notChecked;
     }
     public void setNotChecked(boolean notChecked) {
