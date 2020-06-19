@@ -4,14 +4,12 @@ package miner.model;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.plaf.metal.MetalButtonUI;
-
 import miner.view.CellView;
-
 import java.awt.*;
 
 public class CellModel {
 
-    public static JButton button;
+    private JButton button;
     private int value;
     private int index;
     private boolean notChecked;
@@ -20,8 +18,6 @@ public class CellModel {
     public CellModel(BoardModel board) {
         new CellView(this, board);
     }
-
-
     boolean isEmpty(){
         return isNotChecked() && getValue() == 0;
     }
@@ -29,7 +25,7 @@ public class CellModel {
         return button;
     }
     public void setButton(JButton button) {
-        CellModel.button = button;
+        this.button = button;
     }
     public int getValue() {
         return value;
@@ -97,5 +93,3 @@ public class CellModel {
         else BoardModel.plus();
     }
 }
-
-

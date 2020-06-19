@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 public class StartView {
-
     public StartView() {
         JTextField	side = new JTextField(3);
         side.setToolTipText("Side");

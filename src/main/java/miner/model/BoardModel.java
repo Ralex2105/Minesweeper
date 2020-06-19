@@ -14,7 +14,7 @@ public class BoardModel {
     private int sideLength;
     public static int countOfRevealed;
     public static int countOfNeedRevealed;
-    private static CellModel[][] cells;
+    private  static CellModel[][] cells;
     private boolean beginGame;
 
     public int getSide() {
@@ -116,9 +116,8 @@ public class BoardModel {
         BoardModel.win();
         if(cell.getValue() == 0)
             BoardModel.scanForEmptyCells();
-        if(cell.getValue() == -1) {
+        if(cell.getValue() == -1)
             BoardModel.fail();
-        }
     }
     static void plus() {
         countOfRevealed++;
@@ -156,7 +155,6 @@ public class BoardModel {
         return location;
     }
     public static void planting(int firstPress) {
-        System.out.println(firstPress);
         ArrayList<Integer> location = BoardModel.generateMinesLocation(mines, firstPress);
         for (int i : location) {
             BoardModel.getCell(i).setValue(-1);
@@ -166,6 +164,4 @@ public class BoardModel {
         CellModel.displayValue(cell);
         cell.getButton().setEnabled(false);
     }
-    
 }
-
